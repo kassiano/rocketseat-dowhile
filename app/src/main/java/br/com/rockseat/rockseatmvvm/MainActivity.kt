@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.hehe.observe(this, observer)
+        viewModel.cepTracker.observe(this, observer)
 
         viewModel.addressResult.observe(this, Observer {
             if (it.status == Status.SUCCESS) {

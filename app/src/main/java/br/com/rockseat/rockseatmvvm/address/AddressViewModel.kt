@@ -14,18 +14,11 @@ class AddressViewModel(
     private val cepLiveData = MutableLiveData<String>()
     val addressResult: LiveData<Resource<Address>> = _liveData
 
-    fun getAddress(cep: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result: Resource<Address> = addressRepository.getAddress(cep)
-            _liveData.postValue(result)
-        }
-    }
-
     fun getCep(cep: String) {
         cepLiveData.value = cep
     }
 
-    var hehe = cepLiveData.switchMap { cep ->
+    var cepTracker = cepLiveData.switchMap { cep ->
         liveData {
             emit(Resource.loading(null))
             emit(addressRepository.getAddress(cep))
