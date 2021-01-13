@@ -5,14 +5,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
-
     single { createRetrofit() }
     single { createService(get()) }
-
+    factory { ResponseHandler() }
 }
 
 
-private fun createRetrofit() : Retrofit {
+private fun createRetrofit(): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://brasilapi.com.br/")
         .addConverterFactory(GsonConverterFactory.create())
